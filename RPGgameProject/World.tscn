@@ -39,4 +39,4 @@ position = Vector2( 152, 64 )
 position = Vector2( 56, 152 )
 
 [node name="Tree4" parent="." instance=ExtResource( 4 )]
-position = Vector2( 200, 168 )
+position = Vector2( 275, 127 )
