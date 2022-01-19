@@ -42,27 +42,19 @@ func move_state(delta):
 		animationTree.set("parameters/Run/blend_position", input_vector)
 		animationTree.set("parameters/Attack/blend_position", input_vector)
 		animationState.travel("Run")
-#		if input_vector.x > 0:
-#			animationPlayer.play("RunRight")
-#		elif input_vector.x < 0:
-#			animationPlayer.play("RunLeft")
-#		elif input_vector.y > 0:
-#			animationPlayer.play("RunDown")
-#		else:
-#			animationPlayer.play("RunUp")
 		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
-	
+		
 	else:
 		animationState.travel("Idle")
-#		animationPlayer.play("IdleDown")
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
+		
 	velocity = move_and_slide(velocity)
 	
 	if Input.is_action_just_pressed("attack"):
 		state = ATTACK
 
 
-func attack_state(delta):
+func attack_state(_delta):
 	animationState.travel("Attack")
 	
 func attack_finished():
