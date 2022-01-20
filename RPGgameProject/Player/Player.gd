@@ -84,6 +84,7 @@ func attack_finished():
 	state = MOVE
 
 func _on_HurtBox_area_entered(area):
-	stats.health -= 1
+	stats.health -= area.damage
 	hurtbox.start_invincibility(0.5)
 	hurtbox.create_hit_effect()
+	
