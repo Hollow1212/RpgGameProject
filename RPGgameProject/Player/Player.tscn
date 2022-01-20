@@ -1,9 +1,10 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=54 format=2]
 
 [ext_resource path="res://Player/Player.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
 [ext_resource path="res://Boxes/HitBox.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Player/SwordHitBox.gd" type="Script" id=4]
+[ext_resource path="res://Boxes/HurtBox.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 4.0
@@ -675,6 +676,10 @@ resource_local_to_scene = true
 radius = 11.0
 height = 14.0
 
+[sub_resource type="CapsuleShape2D" id=50]
+radius = 6.0
+height = 4.0
+
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( -1, -1 )
 collision_layer = 2
@@ -714,10 +719,10 @@ tree_root = SubResource( 11 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 12 )
-parameters/Attack/blend_position = Vector2( -0.00172412, -0.00953758 )
-parameters/Idle/blend_position = Vector2( -0.00737619, -1.52625 )
-parameters/Roll/blend_position = Vector2( -0.00172412, -0.00953758 )
-parameters/Run/blend_position = Vector2( -0.00172412, -0.0222543 )
+parameters/Attack/blend_position = Vector2( 0, 1 )
+parameters/Idle/blend_position = Vector2( 0, 1 )
+parameters/Roll/blend_position = Vector2( 0, 1 )
+parameters/Run/blend_position = Vector2( 0, 1 )
 
 [node name="Position" type="Position2D" parent="."]
 position = Vector2( 1, -5 )
@@ -734,5 +739,15 @@ script = ExtResource( 4 )
 position = Vector2( 0, 2 )
 shape = SubResource( 38 )
 disabled = true
+
+[node name="HurtBox" parent="." instance=ExtResource( 5 )]
+position = Vector2( 0, 2 )
+collision_layer = 4
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2( 1, -8 )
+shape = SubResource( 50 )
+
+[connection signal="area_entered" from="HurtBox" to="." method="_on_HurtBox_area_entered"]
 
 [editable path="Position/SwordHitBox"]

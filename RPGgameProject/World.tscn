@@ -539,7 +539,7 @@ position = Vector2( 126, 96 )
 scale = Vector2( 1, 1.01852 )
 
 [node name="Bat" parent="YSort" instance=ExtResource( 9 )]
-position = Vector2( 176, 124 )
+position = Vector2( 264, 109 )
 
 [node name="Tree" type="YSort" parent="YSort"]
 
